@@ -1,0 +1,168 @@
+{% extends 'base.html' %} {% block title %}Dashboard - CodeSim{% endblock %}
+{% block content %}
+<section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
+    <div class="container mx-auto px-6">
+        <div data-lov-id="src/pages/Dashboard.tsx:47:10" data-lov-name="div" data-component-path="src/pages/Dashboard.tsx" data-component-line="47" data-component-file="Dashboard.tsx" data-component-name="div" data-component-content="%7B%22className%22%3A%22text-center%20mb-12%22%7D" class="text-center mb-12">
+            <h1 data-lov-id="src/pages/Dashboard.tsx:48:12" data-lov-name="h1" data-component-path="src/pages/Dashboard.tsx" data-component-line="48" data-component-file="Dashboard.tsx" data-component-name="h1" data-component-content="%7B%22text%22%3A%22Code%20Similarity%20Analysis%22%2C%22className%22%3A%22text-4xl%20md%3Atext-5xl%20font-bold%20mb-4%20bg-gradient-to-r%20from-white%20via-blue-100%20to-purple-200%20bg-clip-text%20text-transparent%22%7D" class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">Code Similarity Analysis</h1>
+            <p data-lov-id="src/pages/Dashboard.tsx:51:12" data-lov-name="p" data-component-path="src/pages/Dashboard.tsx" data-component-line="51" data-component-file="Dashboard.tsx" data-component-name="p" data-component-content="%7B%22text%22%3A%22Upload%20your%20code%20files%20and%20discover%20similarities%20with%20our%20advanced%20AI-powered%20analysis.%22%2C%22className%22%3A%22text-xl%20text-gray-400%20max-w-2xl%20mx-auto%22%7D" class="text-xl text-gray-400 max-w-2xl mx-auto">Upload your code files and discover similarities with our advanced AI-powered analysis.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- File Upload Card -->
+            <div class="lg:col-span-1 bg-gray-800/80 backdrop-blur-md p-8 rounded-2xl shadow-2xl transform hover:scale-100 transition duration-300">
+                <h2 data-lov-id="src/pages/Dashboard.tsx:59:14" data-lov-name="h2" data-component-path="src/pages/Dashboard.tsx" data-component-line="59" data-component-file="Dashboard.tsx" data-component-name="h2" data-component-content="%7B%22text%22%3A%22Upload%20Code%20Files%22%2C%22className%22%3A%22text-2xl%20font-bold%20text-white%20mb-6%20flex%20items-center%22%7D" class="text-2xl font-bold text-white mb-6 flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-upload w-6 h-6 mr-3 text-blue-400" data-lov-id="src/pages/Dashboard.tsx:60:16" data-lov-name="Upload" data-component-path="src/pages/Dashboard.tsx" data-component-line="60" data-component-file="Dashboard.tsx" data-component-name="Upload" data-component-content="%7B%22className%22%3A%22w-6%20h-6%20mr-3%20text-blue-400%22%7D">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" x2="12" y1="3" y2="15"></line>
+                    </svg>Upload Code Files</h2>
+
+                <form method="POST" enctype="multipart/form-data" id="upload-form" class="space-y-6">
+
+                    <!-- File Type Selector -->
+                    <div>
+                        <label for="file_type" class="block text-sm font-medium text-gray-300 mb-2">File Type</label>
+                        <select id="file_type" name="file_type" class="w-full p-3 rounded-lg bg-gray-700/50 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition" aria-label="Select file type">
+                            <option value="py">Python (.py)</option>
+                            <option value="java">Java (.java)</option>
+                            <option value="cpp">C++ (.cpp)</option>
+                            <option value="c">C (.c)</option>
+                            <option value="js">JavaScript (.js)</option>
+                            <option value="php">PHP (.php)</option>
+                        </select>
+                    </div>
+
+                    <!-- Drag & Drop Upload -->
+                    <div class="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center hover:border-gray-500 transition-colors relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 mx-auto text-gray-400 mb-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" x2="12" y1="3" y2="15"></line>
+                        </svg>
+                        <label for="files" class="block text-white font-semibold cursor-pointer">
+                            Click to upload <span class="text-gray-400">or drag and drop</span>
+                        </label>
+                        <input type="file" id="files" name="files" multiple accept=".py,.java,.cpp,.c,.js,.php" class="absolute inset-0 opacity-0 cursor-pointer" aria-label="Upload code files" />
+                        <p class="text-sm text-gray-500 mt-2">
+                            Supported: .py, .java, .cpp, .c, .js, .php
+                        </p>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="analyze-btn" class="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-3 rounded-lg hover:from-indigo-600 hover:to-purple-600 transition disabled:bg-gray-500 disabled:cursor-not-allowed" disabled>
+                        Analyze Similarity
+                    </button>
+                </form>
+
+                <!-- Uploaded file list -->
+                <ul id="file-list" class="mt-6 space-y-3"></ul>
+            </div>
+
+            <!-- Results Card -->
+            <div class="lg:col-span-2 bg-gray-800/80 backdrop-blur-md p-8 rounded-2xl shadow-2xl">
+                <h2 data-lov-id="src/pages/Dashboard.tsx:132:14" data-lov-name="h2" data-component-path="src/pages/Dashboard.tsx" data-component-line="132" data-component-file="Dashboard.tsx" data-component-name="h2" data-component-content="%7B%22text%22%3A%22Analysis%20Results%22%2C%22className%22%3A%22text-2xl%20font-bold%20text-white%20mb-6%20flex%20items-center%22%7D" class="text-2xl font-bold text-white mb-6 flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-compare w-6 h-6 mr-3 text-purple-400" data-lov-id="src/pages/Dashboard.tsx:133:16" data-lov-name="GitCompare" data-component-path="src/pages/Dashboard.tsx" data-component-line="133" data-component-file="Dashboard.tsx" data-component-name="GitCompare" data-component-content="%7B%22className%22%3A%22w-6%20h-6%20mr-3%20text-purple-400%22%7D">
+                        <circle cx="18" cy="18" r="3"></circle>
+                        <circle cx="6" cy="6" r="3"></circle>
+                        <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+                        <path d="M11 18H8a2 2 0 0 1-2-2V9"></path>
+                    </svg>Analysis Results</h2>
+                {% if results %}
+                <div class="overflow-x-auto rounded-lg">
+                    <table class="w-full text-sm bg-gray-700/50 rounded-lg">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+                                <th class="p-4 text-left">File 1</th>
+                                <th class="p-4 text-left">File 2</th>
+                                <th class="p-4 text-left">Similarity Score</th>
+                                <th class="p-4 text-left">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for result in results %}
+                            <tr class="border-t border-gray-600 hover:bg-gray-600/50 transition duration-200">
+                                <td class="p-4">{{ result.file1 }}</td>
+                                <td class="p-4">{{ result.file2 }}</td>
+                                <td class="p-4">{{ "%.2f%%" % (result.score * 100) }}</td>
+                                <td class="p-4">
+                                    {% if result.highlight %}
+                                    <button onclick="showCode('{{ result.highlight.code1 | e }}', '{{ result.highlight.code2 | e }}', '{{ result.file1 }}', '{{ result.file2 }}')" class="text-indigo-400 hover:text-indigo-300 transition duration-200" aria-label="View code comparison">
+                                        View Code
+                                    </button>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if latest_report %}
+                <a href="{{ url_for('download_report', filename=latest_report[0]) }}" class="mt-6 inline-block bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-3 rounded-lg hover:from-indigo-600 hover:to-purple-600 transition">Download Full Report</a>
+                {% endif %} {% else %}
+                <div data-lov-id="src/pages/Dashboard.tsx:138:16" data-lov-name="div" data-component-path="src/pages/Dashboard.tsx" data-component-line="138" data-component-file="Dashboard.tsx" data-component-name="div" data-component-content="%7B%22className%22%3A%22text-center%20py-12%22%7D" class="text-center py-12">
+                    <div data-lov-id="src/pages/Dashboard.tsx:139:18" data-lov-name="div" data-component-path="src/pages/Dashboard.tsx" data-component-line="139" data-component-file="Dashboard.tsx" data-component-name="div" data-component-content="%7B%22className%22%3A%22w-16%20h-16%20bg-gray-700%20rounded-full%20flex%20items-center%20justify-center%20mx-auto%20mb-4%22%7D" class="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-compare w-8 h-8 text-gray-500" data-lov-id="src/pages/Dashboard.tsx:140:20" data-lov-name="GitCompare" data-component-path="src/pages/Dashboard.tsx" data-component-line="140" data-component-file="Dashboard.tsx" data-component-name="GitCompare" data-component-content="%7B%22className%22%3A%22w-8%20h-8%20text-gray-500%22%7D">
+                            <circle cx="18" cy="18" r="3"></circle>
+                            <circle cx="6" cy="6" r="3"></circle>
+                            <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+                            <path d="M11 18H8a2 2 0 0 1-2-2V9"></path>
+                        </svg></div>
+                    <p data-lov-id="src/pages/Dashboard.tsx:142:18" data-lov-name="p" data-component-path="src/pages/Dashboard.tsx" data-component-line="142" data-component-file="Dashboard.tsx" data-component-name="p" data-component-content="%7B%22text%22%3A%22Upload%20at%20least%202%20files%20to%20start%20analysis%22%2C%22className%22%3A%22text-gray-400%22%7D" class="text-gray-400">Upload at least 2 files to start analysis</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <!-- Recent Reports Card -->
+        <div class="mt-12 bg-gray-800/80 backdrop-blur-md p-8 rounded-2xl shadow-2xl">
+            <div class="bg-gray-800/30 p-4 rounded-lg border border-gray-700 flex items-start space-x-4">
+                <!-- Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text w-6 h-6 text-purple-400 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+                    <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                    <path d="M10 9H8"></path>
+                    <path d="M16 13H8"></path>
+                    <path d="M16 17H8"></path>
+                </svg>
+
+                <!-- Text Content -->
+                <div>
+                    <h3 class="text-sm font-semibold text-white mb-1">Recent Reports</h3>
+                    <p class="text-xs text-gray-400">View your analysis history</p>
+                </div>
+            </div>
+
+            {% if reports %}
+            <ul class="space-y-4">
+                {% for report in reports %}
+                <li class="flex justify-between items-center p-4 bg-gray-700/50 rounded-lg hover:bg-gray-600/50 transition duration-200">
+                    <span class="text-gray-300">{{ report[0] }}</span>
+                    <a href="{{ url_for('download_report', filename=report[0]) }}" class="text-indigo-400 hover:text-indigo-300 transition duration-200" aria-label="Download report {{ report[0] }}">Download</a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="text-gray-400 text-center py-8">No past reports available.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+<!-- Code Modal -->
+<div id="code-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden z-50 transition-opacity duration-300" role="dialog" aria-labelledby="code-modal-title">
+    <div class="bg-gray-800/90 backdrop-blur-md p-8 rounded-2xl max-w-6xl w-full max-h-[85vh] overflow-auto shadow-2xl flex flex-col">
+        <div class="flex justify-between items-center mb-6">
+            <h3 id="code-modal-title" class="text-2xl font-semibold text-indigo-300">
+                Code Comparison
+            </h3>
+            <button onclick="closeModal()" class="text-indigo-400 hover:text-indigo-300 transition duration-200" aria-label="Close modal">
+                Close
+            </button>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div>
+                <h4 id="file1-title" class="font-semibold mb-3 text-gray-300"></h4>
+                <pre class="bg-gray-900 p-4 rounded-lg text-sm overflow-x-auto"><code id="code1" class="language-python"></code></pre>
+            </div>
+            <div>
+                <h4 id="file2-title" class="font-semibold mb-3 text-gray-300"></h4>
+                <pre class="bg-gray-900 p-4 rounded-lg text-sm overflow-x-auto"><code id="code2" class="language-python"></code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

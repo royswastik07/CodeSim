@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}CodeSim{% endblock %}</title>
+    <script src="{{ url_for('static', filename='js/tailwind.js') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-dark.min.css" rel="stylesheet" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%239f7aea'><path d='M4 4h12v12H4V4zm2 2v8h8V6H6zm2 2h4v4H8V8z'/></svg>" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js" defer></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</head>
+
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 text-white font-sans min-h-screen">
+    <nav class="bg-gray-950/80 backdrop-blur-md p-4 shadow-xl sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{{ url_for('index') }}" class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-500 hover:from-indigo-300 hover:to-purple-400 transition">CodeSim</a>
+            <div class="space-x-6">
+                <a href="{{ url_for('index') }}#features" class="text-gray-300 hover:text-indigo-300 transition duration-300">Features</a>
+                <a href="{{ url_for('index') }}#how-it-works" class="text-gray-300 hover:text-indigo-300 transition duration-300">How It Works</a>
+                <!-- <a
+                  href="#pricing"
+                  class="text-gray-300 hover:text-indigo-300 transition duration-300"
+                  >Pricing</a
+                > -->
+                {% if session.user_id %}
+                <a href="{{ url_for('dashboard') }}" class="text-gray-300 hover:text-indigo-300 transition duration-300">Dashboard</a>
+                <!--<a href="{{ url_for('logout') }}" class="text-gray-300 hover:text-indigo-300 transition duration-300">Logout</a>> -->
+                <a href="{{ url_for('logout') }}" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out w-4 h-4 mr-2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" x2="9" y1="12" y2="12"></line>
+                    </svg>
+                    Logout
+                </a>
+
+                {% else %}
+                <a data-lov-id="src/components/Header.tsx:25:12" data-lov-name="Link" data-component-path="src/components/Header.tsx" data-component-line="25" data-component-file="Header.tsx" data-component-name="Link" data-component-content="%7B%22text%22%3A%22Login%22%7D" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-800" href="/login"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in w-4 h-4 mr-2" data-lov-id="src/components/Header.tsx:26:14" data-lov-name="LogIn" data-component-path="src/components/Header.tsx" data-component-line="26" data-component-file="Header.tsx" data-component-name="LogIn" data-component-content="%7B%22className%22%3A%22w-4%20h-4%20mr-2%22%7D">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                        <polyline points="10 17 15 12 10 7"></polyline>
+                        <line x1="15" x2="3" y1="12" y2="12"></line>
+                    </svg>Login</a>
+                <a data-lov-id="src/components/Header.tsx:31:12" data-lov-name="Link" data-component-path="src/components/Header.tsx" data-component-line="31" data-component-file="Header.tsx" data-component-name="Link" data-component-content="%7B%22text%22%3A%22Sign%20Up%22%7D" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white" href="/signup"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user w-4 h-4 mr-2" data-lov-id="src/components/Header.tsx:32:14" data-lov-name="User" data-component-path="src/components/Header.tsx" data-component-line="32" data-component-file="Header.tsx" data-component-name="User" data-component-content="%7B%22className%22%3A%22w-4%20h-4%20mr-2%22%7D">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>Sign Up</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <div class="container mx-auto mt-6 space-y-4">
+        {% for category, message in messages %}
+        <div class="p-4 rounded-lg animate-slide-in {% if category == 'success' %}bg-green-700/80{% elif category == 'error' %}bg-red-700/80{% else %}bg-blue-700/80{% endif %}" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %} {% endwith %} {% block content %}{% endblock %}
+    <footer class="bg-gray-950/80 backdrop-blur-md p-6 mt-12 text-center">
+        <p class="text-gray-400">© 2025 CodeSim.</p>
+    </footer>
+</body>
+
+</html>

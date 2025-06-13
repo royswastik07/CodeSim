@@ -1,0 +1,9 @@
+Flask==2.3.2
+torch
+transformers
+scikit-learn
+joblib
+reportlab
+numpy
+python-dotenv==1.0.0
+sendgrid==6.9.7
